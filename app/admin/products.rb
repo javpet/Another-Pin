@@ -4,6 +4,19 @@ ActiveAdmin.register Product do
 #
 permit_params :title, :description, :price, :image_1, :image_2, :image_3, :image_4, :image_5, :collection_date, :is_featured, :is_sold_out
 
+index do
+  selectable_column
+  index_column
+  column "Main image" do |product|
+    image_tag product.image_1.thumb, width: "50"
+  end
+  column :title
+  column :price
+  column :is_featured
+  column :is_sold_out
+  actions
+end
+
 # We make the admin form more straightforward
 form do |f|
   f.inputs "Product Info" do
