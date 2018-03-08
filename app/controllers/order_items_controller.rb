@@ -19,8 +19,24 @@ class OrderItemsController < ApplicationController
 
   def update
     @product = Product.find(params[:product_id])
+    @order_item = OrderItem.find(params[:id])
+
+    # From the form_params we already got the change in quantity so based on that we can update it
+    @order_item.update(form_params)
+
     flash[:success] = "Thanks for updating to your cart!"
+
     redirect_to product_path(@product)
+  end
+
+  def destroy
+    @product = Product.find(params[:product_id])
+    @order_item = OrderItem.find(params[:id])
+    @order_item.delete
+
+    flash[:success] = "Product removed from cart"
+
+    redirect_to cart_path
   end
 
   def form_params
