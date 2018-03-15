@@ -8,6 +8,9 @@ class Order < ApplicationRecord
   validates :city, presence: true
   validates :country, presence: true
 
+  # This let us reaching out in active admin the order items inside the order
+  accepts_nested_attributes_for :order_items
+
   # We want to add the cart items to the order
   def add_items_from_cart(cart)
     cart.order_items.all.each do |item|
