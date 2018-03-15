@@ -29,6 +29,10 @@
   </table>
 
   <p>
+    Total: <%= number_to_currency @current_cart.total_price_in_dollars %>
+  </p>
+
+  <p>
     <%= link_to "Continue to checkout", new_order_path %>
   </p>
 
