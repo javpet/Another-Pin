@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'active_link_to'
 
 gem 'simple_form'
+gem 'country_select'
 
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'

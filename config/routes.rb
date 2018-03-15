@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     resources :order_items
   end
 
+  # We want our users to order multiple times
+  resources :orders
+
   # We only want the user to see ONLY one cart!
   resource :cart
 
