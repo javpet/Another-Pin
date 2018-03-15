@@ -6,6 +6,9 @@
   <h3><%= link_to product.title, product_path(product) %></h3>
 
   <p>
-    10$
+    <%= number_to_currency product.price_in_dollars %>
+    <%# price in dollars method defined on the product model so we can use directly in the view %>
+    <%# number_to_currency is a helper method built-in rails %>
+
   </p>
 </div>

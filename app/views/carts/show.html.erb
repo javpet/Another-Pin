@@ -15,7 +15,7 @@
       <% @current_cart.order_items.each do |item| %>
         <tr>
           <td><%= image_tag item.product.image_1.thumb, width: "50" %><%= item.product.title %></td>
-          <td><%= item.product.price %></td>
+          <td><%= number_to_currency item.product.price_in_dollars %></td>
           <td><%= simple_form_for [item.product, item] do |f| %>
             <%= f.input :quantity, label: false %>
             <%= f.button :submit, "Add to cart" %>
