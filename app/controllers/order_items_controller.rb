@@ -2,6 +2,7 @@ class OrderItemsController < ApplicationController
 
   def create
     #find the product
+    # we are currently not in the product controller, so since the order_items are connected to the product, we can check the product_id
     @product = Product.find(params[:product_id])
 
     #what's the cart cart = @current_cart
@@ -10,6 +11,7 @@ class OrderItemsController < ApplicationController
     @quantity = form_params[:quantity]
 
     # Add the product to cart
+    # Create equals with .new.save
     @current_cart.order_items.create(product: @product, quantity: @quantity)
 
     flash[:success] = "Thanks for adding to your cart!"

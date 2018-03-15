@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def current_cart
     # if the customer has just landed on the site, give them a brand new cart
     # if they already have one, keep it
-    # check session[:cart_id]
+    # check session[:cart_id] -- cart_id just made up it can be basically anything
 
     if session[:cart_id].present?
       # They already have a cart

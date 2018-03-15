@@ -1,7 +1,7 @@
 class Cart < ApplicationRecord
   has_many :order_items
 
-  def totel_quantity
+  def total_quantity
     @count = 0
 
     order_items.all.each do |item|
