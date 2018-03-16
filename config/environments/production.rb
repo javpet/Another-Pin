@@ -19,6 +19,18 @@ Rails.application.configure do
   # `config/secrets.yml.key`.
   config.read_encrypted_secrets = true
 
+  # Configuring Sendgrid for sending out confirmation mails
+  # http://guides.rubyonrails.org/action_mailer_basics.html
+  config.action_mailer.delivery_method = :smtp # Simple mail transfor protocol
+  config.action_mailer.smtp_settings = {
+      address:              'smtp.sendgrid.net',
+      port:                 587,
+      domain:               'anotherpin.co',
+      user_name:            Rails.application.secrets.sendgrid_username,
+      password:             Rails.application.secrets.sendgrid_password,
+      authentication:       'plain',
+      enable_starttls_auto: true  }
+
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?

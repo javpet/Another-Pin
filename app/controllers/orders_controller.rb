@@ -18,6 +18,9 @@ class OrdersController < ApplicationController
 
       flash[:success] = "Order completed!"
 
+      # We want to send an order confirmation
+      OrderMailer.receipt(@order).deliver_now
+
       # We redirect the customer to the thanks page
       redirect_to order_path(@order)
     else
