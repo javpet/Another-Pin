@@ -31,6 +31,17 @@ class Order < ApplicationRecord
     else
       false # Not valid, show error
     end
+
+  rescue Stripe::CardError => e
+        # This is coming from stripe documentation
+        @message = e.json_body[:error][:message]
+
+        # Beside validation errors, we can create our own errors
+        self.errors.add(:stripe_token, @message)
+
+        # Return false to our controller
+        false
+
   end
 
   def total_price

@@ -16,7 +16,9 @@
   <%= f.input :postal_code %>
 
   <div id="card-errors">
-
+      <% @order.errors[:stripe_token].each do |message| %>
+        <p><%= message %></p>
+      <% end %>
   </div>
 
   <div id="card">
@@ -31,7 +33,7 @@
   var elements = stripe.elements();
 
   // Create an instance of the card Element.
-  var card = elements.create('card');
+  var card = elements.create('card', { hidePostalCode: true });
 
   // Add an instance of the card Element into the `card-element` <div>.
   card.mount('#card');
