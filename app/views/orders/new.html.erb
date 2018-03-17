@@ -15,14 +15,23 @@
   <%= f.input :city %>
   <%= f.input :postal_code %>
 
-  <div id="card-errors">
-      <% @order.errors[:stripe_token].each do |message| %>
-        <p><%= message %></p>
-      <% end %>
-  </div>
+  <div class="card-details">
+      <%= label_tag("Card Number") %>
+      <div id="card-errors">
+          <% @order.errors[:stripe_token].each do |message| %>
+            <p><%= message %></p>
+          <% end %>
+      </div>
 
-  <div id="card">
+      <div id="cardNumber">
 
+      </div>
+
+       <div id="cardExpiry">
+       </div>
+
+      <div id="cardCVC">
+      </div>
   </div>
 
   <%= f.button :submit, "Submit order" %>
@@ -32,11 +41,25 @@
   var stripe = Stripe("<%= Rails.application.secrets.stripe_public_key %>");
   var elements = stripe.elements();
 
+  // Matching Stripe form styling to the rest
+  var style = {
+      fontFamily: '"Karla"',
+      color: "#000",
+      iconColor: "#000000",
+      base: {
+          "::placeholder": { color: "#ededeb"}
+      }
+    };
+
   // Create an instance of the card Element.
-  var card = elements.create('card', { hidePostalCode: true });
+  var cardNumber = elements.create('cardNumber', {style: style});
+  var cardExpiry = elements.create('cardExpiry', {style: style});
+  var cardCVC = elements.create('cardCvc', {style: style});
 
   // Add an instance of the card Element into the `card-element` <div>.
-  card.mount('#card');
+  cardNumber.mount('#cardNumber');
+  cardExpiry.mount('#cardExpiry');
+  cardCVC.mount('#cardCVC');
 
   $("form.new_order").on("submit", function(e) {
     e.preventDefault()

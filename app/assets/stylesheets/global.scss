@@ -99,3 +99,24 @@ form.edit_order_item {
 		width: 60px;
 	}
 }
+
+.card-details {
+	display: flex;
+}
+
+#cardNumber {
+	width: 180px;
+	border: 1px solid $grey;
+}
+
+#cardExpiry {
+	width: 100px;
+	border: 1px solid $grey;
+	margin-left: 20px;
+}
+
+#cardCVC {
+	width: 100px;
+	border: 1px solid $grey;
+	margin-left: 20px;
+}
